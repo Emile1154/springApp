@@ -1,35 +1,34 @@
 package ru.emil.springcourse;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ClassicalMusic implements Music {
+    private static List<String> musicList;
     @Override
     public String getSong() {
-        return "Hungarian Rhapsody";
+        return musicList.get((int) (Math.random()*3));
     }
+
+    @Bean(initMethod="musicInit")
     public static ClassicalMusic getClassicalMusic(){
         return new ClassicalMusic();
     }
 
     public void musicInit() throws InterruptedException{
-        System.out.print("Wait");
-        for (int i = 0; i < 3; i++) {
-            System.out.print(".");
-            Thread.sleep(1000);
-        }
-        System.out.print("\n");
+        musicList = new ArrayList<String>();
+        musicList.add("first soundtrack any classical music");
+        musicList.add("second soundtrack any classical music");
+        musicList.add("third soundtrack any classical music");
         System.out.println("Initialization complete!");
     }
+
     public void musicDestroy() throws InterruptedException{
-        System.out.print("Wait");
-        for (int i = 0; i < 3; i++) {
-            System.out.print(".");
-            Thread.sleep(1000);
-        }
-        System.out.print("\n");
         System.out.println("Destroying done!");
     }
-
     private ClassicalMusic() {}
 }
