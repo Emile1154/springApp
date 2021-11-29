@@ -1,6 +1,7 @@
 package ru.emil.springcourse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,6 +10,11 @@ import java.util.List;
 public class MusicPlayer {
     @Autowired
     private List<Music> musicList;
+
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.value}")
+    private int value;
 
     public String playMusic(Type type){
         for(Music music : musicList){
@@ -27,5 +33,13 @@ public class MusicPlayer {
 
     public List<Music> getMusicList() {
         return musicList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
