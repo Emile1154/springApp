@@ -1,12 +1,8 @@
 package ru.emil.springcourse;
 
-import org.springframework.stereotype.Component;
-import javax.annotation.PostConstruct;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class ClassicalMusic implements Music {
     private List<String> musicList;
     @Override
@@ -14,12 +10,11 @@ public class ClassicalMusic implements Music {
         return musicList.get((int) (Math.random()*3));
     }
 
-    @PostConstruct
-    public void musicInit() throws InterruptedException{
+    public void musicInit(){
         musicList = new ArrayList<String>();
         musicList.add("first soundtrack any classical music");
         musicList.add("second soundtrack any classical music");
         musicList.add("third soundtrack any classical music");
-        System.out.println("Initialization complete!");
+        //System.out.println("Initialization complete!");
     }
 }
